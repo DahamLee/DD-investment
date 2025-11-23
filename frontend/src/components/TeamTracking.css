@@ -1,0 +1,211 @@
+.team-tracking {
+  background: #f8f9fa;
+  border-radius: 12px;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.team-tracking h4 {
+  color: #2c3e50;
+  margin-bottom: 15px;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.team-tracking-loading {
+  text-align: center;
+  padding: 20px;
+  color: #6c757d;
+}
+
+.team-members {
+  display: grid;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.member-card {
+  background: white;
+  border-radius: 10px;
+  padding: 15px;
+  border: 2px solid #e9ecef;
+  transition: all 0.3s ease;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.member-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.member-card.viewed {
+  border-color: #28a745;
+  background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+}
+
+.member-card.not-viewed {
+  border-color: #dc3545;
+  background: linear-gradient(135deg, #f8d7da 0%, #f5c6cb 100%);
+}
+
+.member-info {
+  flex: 1;
+}
+
+.member-name {
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: #2c3e50;
+  margin-bottom: 5px;
+}
+
+.member-status {
+  margin-bottom: 8px;
+}
+
+.status-viewed {
+  color: #28a745;
+  font-weight: 600;
+}
+
+.status-not-viewed {
+  color: #dc3545;
+  font-weight: 600;
+}
+
+.member-details {
+  font-size: 0.9rem;
+  color: #6c757d;
+}
+
+.view-time {
+  margin-bottom: 3px;
+}
+
+.ip-address {
+  font-family: monospace;
+  font-size: 0.8rem;
+}
+
+.btn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.btn-small {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 6px 12px;
+  font-size: 0.8rem;
+}
+
+.btn-small:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+}
+
+.no-members {
+  text-align: center;
+  padding: 30px;
+  background: white;
+  border-radius: 10px;
+  border: 2px dashed #dee2e6;
+}
+
+.no-members p {
+  margin-bottom: 20px;
+  color: #6c757d;
+  font-size: 1.1rem;
+}
+
+.tracking-info {
+  background: white;
+  border-radius: 10px;
+  padding: 20px;
+  border: 1px solid #e9ecef;
+}
+
+.tracking-info h5 {
+  color: #2c3e50;
+  margin-bottom: 15px;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.tracking-info ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.tracking-info li {
+  padding: 8px 0;
+  color: #495057;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.error-message {
+  background: #ffebee;
+  color: #c62828;
+  padding: 10px;
+  border-radius: 6px;
+  text-align: center;
+  margin-bottom: 15px;
+  border-left: 4px solid #c62828;
+  font-size: 0.9rem;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+  .team-tracking {
+    padding: 15px;
+  }
+  
+  .member-card {
+    flex-direction: column;
+    gap: 15px;
+    text-align: center;
+  }
+  
+  .member-info {
+    width: 100%;
+  }
+  
+  .btn-small {
+    width: 100%;
+    max-width: 200px;
+  }
+  
+  .tracking-info li {
+    flex-direction: column;
+    text-align: center;
+    gap: 5px;
+  }
+}
+
+
+
+
+

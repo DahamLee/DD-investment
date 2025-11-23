@@ -1,0 +1,21 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.sqlite3
+
+# Virtualenv
+.venv/
+
+# macOS
+.DS_Store
+
+# Docker
+*.log
+.env
+
+# Node (혹시 프론트엔드 추가시)
+node_modules/
+build/
+dist/

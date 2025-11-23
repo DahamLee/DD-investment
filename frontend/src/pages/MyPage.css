@@ -1,0 +1,327 @@
+.mypage-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.mypage-header {
+  text-align: center;
+  margin-bottom: 40px;
+  padding: 30px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-radius: 15px;
+  box-shadow: 0 8px 32px rgba(102, 126, 234, 0.3);
+}
+
+.mypage-header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  font-weight: 700;
+}
+
+.user-info h2 {
+  font-size: 1.8rem;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.user-info p {
+  font-size: 1.1rem;
+  opacity: 0.9;
+}
+
+.mypage-content {
+  display: grid;
+  gap: 30px;
+}
+
+.today-lotto-section,
+.lotto-history-section,
+.team-tracking-section {
+  background: white;
+  border-radius: 15px;
+  padding: 25px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e9ecef;
+}
+
+.today-lotto-section h3,
+.lotto-history-section h3,
+.team-tracking-section h3 {
+  color: #2c3e50;
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.today-lotto-card {
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  color: white;
+  padding: 25px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+}
+
+.lotto-info {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.lotto-numbers {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.number-ball {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  color: white;
+  font-weight: bold;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease;
+}
+
+.number-ball:hover {
+  transform: scale(1.1);
+}
+
+.number-ball.medium {
+  width: 50px;
+  height: 50px;
+  font-size: 1.1rem;
+}
+
+.number-ball.small {
+  width: 35px;
+  height: 35px;
+  font-size: 0.9rem;
+}
+
+.lotto-details {
+  text-align: center;
+}
+
+.lotto-details p {
+  margin: 5px 0;
+  font-size: 1rem;
+}
+
+.no-lotto-card {
+  text-align: center;
+  padding: 40px;
+  background: #f8f9fa;
+  border-radius: 12px;
+  border: 2px dashed #dee2e6;
+}
+
+.no-lotto-card p {
+  margin-bottom: 20px;
+  color: #6c757d;
+  font-size: 1.1rem;
+}
+
+.btn {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+.btn-primary:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+}
+
+.history-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.history-item {
+  background: #f8f9fa;
+  border-radius: 10px;
+  padding: 20px;
+  border: 1px solid #e9ecef;
+  transition: all 0.3s ease;
+}
+
+.history-item:hover {
+  border-color: #667eea;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.history-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.history-date {
+  font-weight: 600;
+  color: #2c3e50;
+  font-size: 0.9rem;
+}
+
+.view-status {
+  font-size: 1.2rem;
+}
+
+.view-status.viewed {
+  color: #28a745;
+}
+
+.view-status.not-viewed {
+  color: #dc3545;
+}
+
+.history-numbers {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.no-history {
+  text-align: center;
+  padding: 40px;
+  color: #6c757d;
+}
+
+.tracking-info {
+  background: #f8f9fa;
+  border-radius: 10px;
+  padding: 20px;
+  margin-top: 15px;
+}
+
+.tracking-info p {
+  margin-bottom: 20px;
+  color: #495057;
+  font-size: 1.1rem;
+}
+
+.tracking-features {
+  display: grid;
+  gap: 15px;
+}
+
+.feature-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 10px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.feature-icon {
+  font-size: 1.5rem;
+}
+
+.loading {
+  text-align: center;
+  padding: 40px;
+  font-size: 1.2rem;
+  color: #6c757d;
+}
+
+.error-message {
+  background: #ffebee;
+  color: #c62828;
+  padding: 15px;
+  border-radius: 8px;
+  text-align: center;
+  margin-bottom: 20px;
+  border-left: 4px solid #c62828;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+  .mypage-container {
+    padding: 15px;
+  }
+  
+  .mypage-header h1 {
+    font-size: 2rem;
+  }
+  
+  .user-info h2 {
+    font-size: 1.5rem;
+  }
+  
+  .lotto-info {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .lotto-numbers {
+    justify-content: center;
+  }
+  
+  .number-ball.medium {
+    width: 45px;
+    height: 45px;
+    font-size: 1rem;
+  }
+  
+  .number-ball.small {
+    width: 30px;
+    height: 30px;
+    font-size: 0.8rem;
+  }
+  
+  .history-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .history-header {
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+  }
+  
+  .tracking-features {
+    grid-template-columns: 1fr;
+  }
+  
+  .feature-item {
+    flex-direction: column;
+    text-align: center;
+    gap: 10px;
+  }
+}
+
+
+
+
+

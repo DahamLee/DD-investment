@@ -1,0 +1,18 @@
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    container_name: dd_investment_backend_dev
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+      - "5173:5173"
+    environment:
+      - PYTHONUNBUFFERED=1
+      - PYTHONPATH=/app/backend
+    env_file:
+        - ./backend/.env
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
