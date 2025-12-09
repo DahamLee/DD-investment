@@ -6,6 +6,7 @@ from .user import User, GenderEnum, RoleEnum, SubscriptionTypeEnum
 from .lotto import LottoNumber
 from .email_verification import EmailVerification
 from .stock import Stock, FinancialAccount, FinancialStatementRaw
+from .us_stock import USStock, USPriceDaily, USFundamental, USSecFiling
 
 __all__ = [
     "BaseModel",
@@ -18,4 +19,8 @@ __all__ = [
     "Stock",
     "FinancialAccount",
     "FinancialStatementRaw",
+    "USStock",
+    "USPriceDaily",
+    "USFundamental",
+    "USSecFiling",
 ]

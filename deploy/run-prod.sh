@@ -13,29 +13,29 @@ PROJECT_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
 echo "📂 프로젝트 디렉토리: $PROJECT_DIR"
 cd "$PROJECT_DIR"
 
-# 개발 환경 변수 파일 확인 (임시로 .env.development 사용)
-if [ ! -f "backend/.env.development" ]; then
-    echo "❌ 개발 환경 변수 파일이 없습니다!"
-    echo "   backend/.env.development 파일을 생성해주세요."
+# 프로덕션 환경 변수 파일 확인
+if [ ! -f "backend/.env.production" ]; then
+    echo "❌ 프로덕션 환경 변수 파일이 없습니다!"
+    echo "   backend/.env.production 파일을 생성해주세요."
     exit 1
 fi
 
-# .env.development 파일에서 환경 변수 로드
+# .env.production 파일에서 환경 변수 로드
 # docker-compose.prod.yml에서 호스트 환경 변수를 참조하기 때문
-if [ -f "backend/.env.development" ]; then
-    # .env.development 파일의 모든 변수를 환경 변수로 export
+if [ -f "backend/.env.production" ]; then
+    # .env.production 파일의 모든 변수를 환경 변수로 export
     set -a  # 자동으로 export
-    source backend/.env.development
+    source backend/.env.production
     set +a  # 자동 export 해제
     
     if [ -z "$DATABASE_PASSWORD" ]; then
-        echo "⚠️  DATABASE_PASSWORD가 .env.development에 없습니다."
+        echo "⚠️  DATABASE_PASSWORD가 .env.production에 없습니다."
         echo "   docker-compose.prod.yml에서 DATABASE_PASSWORD가 필요합니다."
     fi
 fi
 
-echo "⚠️  프로덕션 배포를 시작합니다 (개발 환경 변수 사용)..."
-echo "   환경 변수 파일: backend/.env.development"
+echo "⚠️  프로덕션 배포를 시작합니다..."
+echo "   환경 변수 파일: backend/.env.production"
 
 # 환경 변수로 확인 건너뛰기 가능 (CI/CD 등에서 사용)
 if [ "${SKIP_CONFIRMATION:-}" != "true" ]; then
@@ -136,6 +136,6 @@ echo "   docker compose -f docker-compose.prod.yml restart"
 echo ""
 echo "⚠️  중요 사항:"
 echo "   - 프로덕션 환경에서는 반드시 HTTPS를 사용하세요"
-echo "   - 환경 변수 파일(backend/.env.development)을 정기적으로 백업하세요"
+echo "   - 환경 변수 파일(backend/.env.production)을 정기적으로 백업하세요"
 echo "   - 데이터베이스 백업을 정기적으로 수행하세요"
 

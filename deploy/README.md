@@ -5,7 +5,8 @@
 ## 파일 설명
 
 - **`run-on-host.sh`** - 호스트 컴퓨터에서 실행하는 배포 스크립트 (npm 설치 불필요)
-- **`test-deploy.sh`** - 컨테이너 내부에서도 사용 가능한 배포 스크립트
+- **`run-prod.sh`** - 프로덕션 배포 스크립트
+- **`restart.sh`** - 빠른 재시작 스크립트 (코드 변경 없을 때)
 - **`nginx.test.conf`** - 테스트용 nginx 설정 (HTTP만, SSL 없음)
 - **`nginx.conf`** - 프로덕션용 nginx 설정 (HTTPS, SSL 필요)
 - **`HOST_DEPLOYMENT.md`** - 호스트 배포 상세 가이드

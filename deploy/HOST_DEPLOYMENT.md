@@ -34,11 +34,16 @@ docker compose version
 
 ### 4. 배포 실행
 
-#### 방법 1: 자동 스크립트 사용
+#### 방법 1: 자동 스크립트 사용 (권장)
 ```bash
-chmod +x deploy/test-deploy.sh
-./deploy/test-deploy.sh
+chmod +x deploy/run-on-host.sh
+./deploy/run-on-host.sh
 ```
+
+이 스크립트는:
+- ✅ Docker만 있으면 됩니다 (npm 설치 불필요)
+- ✅ 자동으로 프론트엔드를 Docker로 빌드합니다
+- ✅ 모든 서비스를 시작합니다
 
 #### 방법 2: 수동 실행
 ```bash
