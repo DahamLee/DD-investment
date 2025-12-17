@@ -4,11 +4,16 @@ from pydantic import BaseModel
 from datetime import datetime, timedelta
 import pandas as pd
 import numpy as np
+import sys
+import os
 try:
     import FinanceDataReader as fdr
 except Exception:
     fdr = None
 import yfinance as yf
+
+# 재무제표 서비스 import
+from app.services.financial_statement_service import FinancialStatementService
 
 router = APIRouter()
 
@@ -56,7 +61,16 @@ class TechnicalIndicator(BaseModel):
     bollinger_upper: Optional[float] = None
     bollinger_lower: Optional[float] = None
 
-@router.get("/stocks", response_model=List[StockItem])
+class FinancialStatementItem(BaseModel):
+    stock_code: str
+    quarter: str
+    year: int
+    value: Optional[float] = None
+    change_pct: Optional[float] = None
+    score: Optional[int] = None
+    fs_code: Optional[str] = None
+
+@router.get("", response_model=List[StockItem])
 def get_stocks(
     market: Optional[str] = Query(None, description="시장 구분 (KOSPI, KOSDAQ, NASDAQ 등)"),
     sector: Optional[str] = Query(None, description="섹터 필터"),
@@ -96,7 +110,69 @@ def get_stocks(
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Failed to load stocks: {str(e)}")
 
-@router.get("/stocks/{symbol}", response_model=StockDetail)
+@router.get("/financial-statements", response_model=List[FinancialStatementItem])
+def get_financial_statements(
+    fs_code: str = Query(..., description="재무제표 코드 (예: 당기순이익)"),
+    quarter: str = Query(..., description="분기 (예: Q1, Q2, Q3, Q4)"),
+    year: int = Query(..., description="연도"),
+    comparison_type: int = Query(0, ge=0, le=1, description="비교 기준 (0: 전기대비, 1: 전년동기대비)")
+):
+    """국내주식 재무제표 정보 조회"""
+    import logging
+    logger = logging.getLogger(__name__)
+    
+    fs_service = FinancialStatementService()
+    try:
+        logger.info(f"재무제표 조회 시작: fs_code={fs_code}, quarter={quarter}, year={year}, comparison_type={comparison_type}")
+        
+        # 재무제표 서비스에서 함수 호출
+        result_df = fs_service.get_fs_score(fs_code, comparison_type, quarter, year)
+        
+        logger.info(f"조회된 데이터 행 수: {len(result_df)}")
+        
+        if result_df.empty:
+            logger.warning(f"데이터가 없습니다: fs_code={fs_code}, quarter={quarter}, year={year}")
+            return []
+        
+        # DataFrame을 리스트로 변환
+        financial_statements = []
+        for _, row in result_df.iterrows():
+            # 비교 기준에 따라 적절한 컬럼 선택
+            change_col = "전기대비" if comparison_type == 0 else "전년동기대비"
+            change_pct = float(row[change_col]) if change_col in row and pd.notna(row[change_col]) else None
+            
+            financial_statements.append(FinancialStatementItem(
+                stock_code=str(row.get('stock_code', '')),
+                quarter=str(row.get('quarter', '')),
+                year=int(row.get('year', 0)),
+                value=float(row.get('값', 0)) if '값' in row and pd.notna(row.get('값')) else None,
+                change_pct=change_pct,
+                score=int(row.get('score', 0)) if 'score' in row and pd.notna(row.get('score')) else None,
+                fs_code=str(row.get('fs_code', fs_code))
+            ))
+        
+        # 점수 순으로 정렬
+        financial_statements.sort(key=lambda x: x.score if x.score is not None else 0, reverse=True)
+        
+        logger.info(f"재무제표 조회 완료: {len(financial_statements)}개 항목 반환")
+        return financial_statements
+        
+    except Exception as e:
+        import traceback
+        error_detail = traceback.format_exc()
+        logger.error(f"재무제표 조회 실패: {str(e)}\n{error_detail}")
+        raise HTTPException(
+            status_code=500, 
+            detail=f"재무제표 데이터를 불러오는데 실패했습니다: {str(e)}"
+        )
+    finally:
+        # DB 연결 정리
+        try:
+            fs_service.close()
+        except:
+            pass
+
+@router.get("/{symbol}", response_model=StockDetail)
 def get_stock_detail(symbol: str = Path(..., description="종목 코드")):
     """특정 종목 상세 정보 조회"""
     try:
@@ -134,7 +210,7 @@ def get_stock_detail(symbol: str = Path(..., description="종목 코드")):
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Failed to load stock detail: {str(e)}")
 
-@router.get("/stocks/{symbol}/candles", response_model=List[CandleData])
+@router.get("/{symbol}/candles", response_model=List[CandleData])
 def get_stock_candles(
     symbol: str = Path(..., description="종목 코드"),
     start: Optional[str] = Query(None, description="시작일 (YYYY-MM-DD)"),
@@ -180,7 +256,7 @@ def get_stock_candles(
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Failed to load candles: {str(e)}")
 
-@router.get("/stocks/{symbol}/indicators", response_model=List[TechnicalIndicator])
+@router.get("/{symbol}/indicators", response_model=List[TechnicalIndicator])
 def get_stock_indicators(
     symbol: str = Path(..., description="종목 코드"),
     start: Optional[str] = Query(None, description="시작일 (YYYY-MM-DD)"),

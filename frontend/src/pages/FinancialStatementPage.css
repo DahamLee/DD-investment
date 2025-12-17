@@ -1,0 +1,219 @@
+.financial-statement-container {
+  padding: 24px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.fs-header {
+  margin-bottom: 32px;
+  text-align: center;
+}
+
+.fs-header h1 {
+  font-size: 2rem;
+  margin-bottom: 8px;
+  color: #1a1a1a;
+}
+
+.fs-header p {
+  color: #666;
+  font-size: 1rem;
+}
+
+/* 필터 섹션 */
+.fs-filter-section {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 24px;
+  padding: 20px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.fs-filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 150px;
+}
+
+.fs-filter-group label {
+  font-weight: 600;
+  color: #333;
+  font-size: 0.9rem;
+}
+
+.fs-filter-select {
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 0.95rem;
+  background: white;
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+
+.fs-filter-select:hover {
+  border-color: #1976d2;
+}
+
+.fs-filter-select:focus {
+  outline: none;
+  border-color: #1976d2;
+  box-shadow: 0 0 0 2px rgba(25, 118, 210, 0.1);
+}
+
+/* 테이블 컨테이너 */
+.fs-table-container {
+  position: relative;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.fs-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+
+.fs-table thead {
+  background: #f5f5f5;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.fs-table th {
+  padding: 16px 12px;
+  text-align: left;
+  font-weight: 600;
+  color: #333;
+  border-bottom: 2px solid #ddd;
+  white-space: nowrap;
+}
+
+.fs-table tbody tr {
+  border-bottom: 1px solid #eee;
+  transition: background-color 0.2s;
+}
+
+.fs-table tbody tr:hover {
+  background-color: #f8f9fa;
+}
+
+.fs-table td {
+  padding: 14px 12px;
+  color: #555;
+}
+
+/* 테이블 셀 스타일 */
+.fs-rank-cell {
+  font-weight: 600;
+  color: #1976d2;
+  text-align: center;
+  width: 60px;
+}
+
+.fs-stock-code-cell {
+  font-family: 'Courier New', monospace;
+  font-weight: 600;
+  color: #1a1a1a;
+  width: 100px;
+}
+
+.fs-quarter-cell,
+.fs-year-cell {
+  text-align: center;
+  width: 80px;
+}
+
+.fs-value-cell {
+  text-align: right;
+  font-weight: 500;
+  width: 150px;
+}
+
+.fs-change-cell {
+  text-align: right;
+  font-weight: 600;
+  width: 120px;
+}
+
+.fs-score-cell {
+  text-align: center;
+  font-size: 1.1rem;
+  width: 80px;
+}
+
+/* 로딩 및 에러 메시지 */
+.fs-loading-overlay {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+  color: #666;
+}
+
+.fs-loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #1976d2;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 16px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.fs-error-message {
+  padding: 20px;
+  background: #ffebee;
+  color: #c62828;
+  border-left: 4px solid #c62828;
+  margin: 20px;
+  border-radius: 4px;
+}
+
+.fs-no-data {
+  padding: 60px 20px;
+  text-align: center;
+  color: #999;
+}
+
+.fs-no-data p {
+  margin: 8px 0;
+  font-size: 1rem;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+  .financial-statement-container {
+    padding: 16px;
+  }
+
+  .fs-filter-section {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .fs-filter-group {
+    width: 100%;
+  }
+
+  .fs-table-container {
+    overflow-x: auto;
+  }
+
+  .fs-table {
+    min-width: 800px;
+  }
+}

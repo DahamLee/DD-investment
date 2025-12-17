@@ -103,6 +103,16 @@ class ApiClient {
     return this.request(`/stocks/stocks/${symbol}/indicators?${params}`)
   }
 
+  async getFinancialStatements(fsCode, quarter, year, comparisonType = 0) {
+    const params = new URLSearchParams({
+      fs_code: fsCode,
+      quarter,
+      year: year.toString(),
+      comparison_type: comparisonType.toString()
+    })
+    return this.request(`/stocks/financial-statements?${params}`)
+  }
+
   // Lotto API
   async generateLottoNumbers(userId = null) {
     const params = userId ? `?user_id=${userId}` : ''

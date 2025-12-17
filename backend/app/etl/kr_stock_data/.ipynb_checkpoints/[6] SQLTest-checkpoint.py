@@ -18,17 +18,17 @@ from dotenv import load_dotenv
 # 현재 파일 위치: backend/app/etl/kr_stock_data/[6] SQLTest.py
 # .env.local 위치: backend/.env.local (프로젝트 루트 기준)
 current_dir = os.path.dirname(os.path.abspath(__file__))
-backend_dir = os.path.dirname(os.path.dirname(os.path.dirname(current_dir)))  # 3번 dirname으로 backend/ 디렉토리 찾기
+backend_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(current_dir))))
 env_local_path = os.path.join(backend_dir, '.env.local')
 env_path = os.path.join(backend_dir, '.env')
 
 if os.path.exists(env_local_path):
-    load_dotenv(env_local_path, override=True)  # override=True로 .env 파일의 값이 기존 환경 변수를 덮어쓰도록 설정
+    load_dotenv(env_local_path)
 elif os.path.exists(env_path):
-    load_dotenv(env_path, override=True)
+    load_dotenv(env_path)
 else:
     # 현재 디렉토리에서 찾기
-    load_dotenv(override=True)
+    load_dotenv()
 
 # 환경 변수에서 DB 설정 가져오기
 host = os.getenv("DATABASE_HOST", "121.134.7.122")
