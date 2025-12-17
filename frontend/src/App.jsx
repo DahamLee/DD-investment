@@ -26,6 +26,7 @@ export default function App() {
           <NavLink to="/" end>Home</NavLink>
           <NavLink to="/markets">Markets</NavLink>
           <NavLink to="/stock-ranking">Stock Ranking</NavLink>
+          <NavLink to="/financial-statement">재무제표</NavLink>
           <NavLink to="/lotto">Lotto</NavLink>
           {isAuthenticated ? (
             <>

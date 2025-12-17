@@ -9,6 +9,7 @@ import NewsPage from './pages/NewsPage.jsx'
 import InvestingPage from './pages/InvestingPage.jsx'
 import StockDetailPage from './pages/StockDetailPage.jsx'
 import StockRankingPage from './pages/StockRankingPage.jsx'
+import FinancialStatementPage from './pages/FinancialStatementPage.jsx'
 import LoginPage from './pages/LoginPage.jsx'
 import RegisterPage from './pages/RegisterPage.jsx'
 import LottoPage from './pages/LottoPage.jsx'
@@ -24,6 +25,7 @@ const router = createBrowserRouter([
       { path: 'markets', element: <MarketsPage /> },
       { path: 'markets/stock/:symbol', element: <StockDetailPage /> },
       { path: 'stock-ranking', element: <StockRankingPage /> },
+      { path: 'financial-statement', element: <FinancialStatementPage /> },
       { path: 'news', element: <NewsPage /> },
       { path: 'investing', element: <InvestingPage /> },
       { path: 'lotto', element: <LottoPage /> },
